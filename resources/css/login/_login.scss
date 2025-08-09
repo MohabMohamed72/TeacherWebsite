@@ -10,6 +10,11 @@
 
     &.reg-container{
         height: 120vh;
+
+        @media (max-width: 1000px) {
+            height: 137vh;
+            
+        }
     }
     .login-form {
         display: flex;
