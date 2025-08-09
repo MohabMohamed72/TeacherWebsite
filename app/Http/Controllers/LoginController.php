@@ -15,7 +15,7 @@ class LoginController extends Controller
 
             if (!$user) {
                 return response()->json([
-                    'message' => 'User not found',
+                    'message' => 'لايوجد مستخدم بهذا الرقم',
                     'status' => 'error'
                 ], 404);
             }
@@ -23,7 +23,7 @@ class LoginController extends Controller
             
             if (!Hash::check($request->input('password'), $user->password)) {
                 return response()->json([
-                    'message' => 'Invalid credentials',
+                    'message' => 'كلمة المرور غير صحيحة',
                     'status' => 'error'
                 ], 401);
             }
@@ -31,11 +31,11 @@ class LoginController extends Controller
             $token = $user->createToken('auth-token')->plainTextToken;
 
             return response()->json([
-                'message' => 'Login successful',
+                'message' => 'تم تسجيل الدخول بنجاح',
                 'status' => 'success',
                 'data' => [
                     'user' => $user->only(['id', 'name', 'phone_number', 'email']),
-                    'token' => $token, // if using Sanctum
+                    'token' => $token, 
                 ]
             ], 200);
 
@@ -52,7 +52,7 @@ class LoginController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'User registered successfully',
+            'message' => 'تم إضافة المستخدم بنجاح',
             'status' => 'success',
             'data' => [
                 'user' => $user->only(['id', 'name', 'phone_number', 'email']),

@@ -16,8 +16,16 @@ class LoginMiddleWare
      */
     public function handle(Request $request, Closure $next): Response
     {
-        
-            // Optionally, you can set the user in the request for further use
-        return $next($request);
+        $user = User::where('phone_number', $request->input('phone_number'))->first();
+        if (strlen($request->input('phone_number'))!= 11 ) {
+            return response()->json([
+                'message' => 'يجب ان يكون رقم الهاتف مكون من 11 رقم ',
+                'status' => 'error'
+            ], 404);
+        }
+        else{
+
+            return $next($request);
+        }
     }
 }

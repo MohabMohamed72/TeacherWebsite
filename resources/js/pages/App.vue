@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ErrorDialog from '@/components/Dialogs/ErrorDialog.vue';
+
 
 </script>
 
